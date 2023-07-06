@@ -10,7 +10,7 @@ def stress_test(args):
 
 if __name__ == '__main__':
     start_time = datetime.now()
-    cpu_count = cpu_count()
+    cpu_count = min(4, cpu_count())
     with Pool(cpu_count) as mp_pool:
         mp_pool.map(stress_test, [(cpu, 100000000) for cpu in range(cpu_count)])
     print(f"total: {datetime.now() - start_time}")
